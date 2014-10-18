@@ -3,10 +3,11 @@
 %h2 Simple example:
 
 %p
-  $ curl --upload-file ./log/development.log
-  = root_url + 'rails'
-%p
-  = link_to log_file_url('5y9l_zx9InCfbng'), log_file_url('5y9l_zx9InCfbng'), target: :blank
+  %code
+    $ curl --upload-file ./log/development.log
+    = root_url + 'rails'
+    %br/
+    = link_to log_file_url('5y9l_zx9InCfbng'), log_file_url('5y9l_zx9InCfbng'), target: :blank
 
 %h2 Share last N lines only
 
@@ -25,4 +26,4 @@
     }
     alias sharelog=sharelog
 
-%p $ sharelog rails ./log/production.log 200
+%code $ sharelog rails ./log/production.log 200
