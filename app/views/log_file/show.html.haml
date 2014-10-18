@@ -1,7 +1,7 @@
 %p= link_to 'Raw log', log_file_url(@log_file.key, format: :log)
 #console
   %pre
-    %code#code=@log_file.raw_log
+    %code#code=@log_file.raw_log[-[@log_file.raw_log.length, 100*1024].min..-1]
 :javascript
   var txt = document.getElementById("code").innerHTML;
 
@@ -13,7 +13,7 @@
   var line_n = 0;
   for (var i=0; i < html_lines.length; i++)
   {
-    html_numbered += '<tr><td><a href="#'+i+'">'+i+'</a></td><td>'+html_lines[i]+'</td></tr>';
+    html_numbered += '<tr id="L'+i+'"><td><a href="#L'+i+'">'+i+'</a></td><td>'+html_lines[i]+'</td></tr>';
   }
   html_numbered += '</table>';
 
