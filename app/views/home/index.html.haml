@@ -2,28 +2,29 @@
 
 %h2 Simple example:
 
-%p
+%pre
   %code
-    $ curl --upload-file ./log/development.log
-    = root_url + 'rails'
+    $ curl --upload-file ./log/development.log #{root_url}rails
     %br/
     = link_to log_file_url('5y9l_zx9InCfbng'), log_file_url('5y9l_zx9InCfbng'), target: :blank
 
 %h2 Share last N lines only
 
 %pre
-  :plain
-    sharelog() {
-    tmpfile=$( mktemp -t sharelog )
-    if [ -z $3 ]
-    then
-      cat $2 > $tmpfile
-    else
-      tail -n $3 $2 > $tmpfile
-    fi
-    curl --upload-file $tmpfile http://localhost:3000/$1
-    rm -f $tmpfile
-    }
-    alias sharelog=sharelog
+  %code
+    :plain
+      sharelog() {
+      tmpfile=$( mktemp -t sharelog )
+      if [ -z $3 ]
+      then
+        cat $2 > $tmpfile
+      else
+        tail -n $3 $2 > $tmpfile
+      fi
+      curl --upload-file $tmpfile http://localhost:3000/$1
+      rm -f $tmpfile
+      }
+      alias sharelog=sharelog
 
-%code $ sharelog rails ./log/production.log 200
+%pre
+  %code $ sharelog rails ./log/production.log 200
