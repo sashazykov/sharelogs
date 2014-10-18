@@ -29,8 +29,4 @@ class LogFile
     @raw_log ||= file.read
   end
 
-  def to_html
-    @to_html ||= ERB::Util.html_escape(raw_log)
-  end
-
 end
