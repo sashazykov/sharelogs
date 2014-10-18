@@ -17,7 +17,10 @@ class LogFileController < ApplicationController
   def show
     @log_file = LogFile.find_by_key(params[:key])
     if @log_file
-      render :show
+      respond_to do |format|
+        format.html
+        format.log { render text: @log_file.raw_log }
+      end
     else
       render text: 'Not Found', status: 404
     end

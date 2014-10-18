@@ -1,1 +1,3 @@
+%p= link_to 'Raw log', log_file_url(@log_file.key, format: :log)
+
 %pre= @log_file.raw_log
