@@ -1164,6 +1164,13 @@ label,
   width:50px;
   background-color: @well-bg;
   text-align: right;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;  
 }
 
 #code table {
@@ -1172,4 +1179,20 @@ label,
 }
 #code table td {
   padding:0px 10px 0px 10px;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+#code table tr:first-child td{
+  padding-top:10px;
+}
+
+#code_title {
+  border-bottom: 0px;
+  padding:10px;
+  font-weight:bold;
+}
+
+.raw-log {
+  padding:0px;
+  font-weight:bold;
 }
