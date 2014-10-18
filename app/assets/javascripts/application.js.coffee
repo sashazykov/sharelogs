@@ -20,7 +20,7 @@ sharelogInit = () ->
 
     # prev.append(" #{prev_pad} < #{pad}") if prev
     if prev_pad? && prev_pad < pad
-      prev.append(" <a href='#' class='toggle-block-logic open-block'><i class='fa fa-minus-square-o'></i></a>")
+      prev.append(" <i class='fa fa-minus-square-o toggle-block-logic'></i>")
     
     # add new line
     prev = $("#code table").append("<tr id='L#{i}' data-pad='#{pad}'><td class='line-number'><a href='#L#{i}'>#{i}</a></td><td class='log'>#{this}</td></tr>").find('tr:last td.log')
@@ -33,15 +33,15 @@ sharelogInit = () ->
     currentPid = grepPid
     grepString = $('#grepInput').val()
     if grepString == ''
-      $("#code table tr").show()
+      $("#code table tr").removeClass('hidden-by-grep')
     else
       $("#code table tr").each (i) ->
         if currentPid != grepPid
           return false
         if $(this).find('td').text().match(new RegExp(grepString, "i"))
-          $(this).show()
+          $(this).removeClass('hidden-by-grep')
         else
-          $(this).hide()
+          $(this).addClass('hidden-by-grep')
 
   $('#grepInput').on 'change', grepLogs
   $('#grepInput').on 'keyup', grepLogs
@@ -49,23 +49,20 @@ sharelogInit = () ->
 $(document).on 'click', '.toggle-block-logic', () ->
   line = $(this).parent().parent()
   pad = parseInt(line.data('pad'))
-  if $(this).hasClass('open-block')
+  if $(this).hasClass('fa-minus-square-o')
     next = line.next()
     while next && parseInt(next.data('pad')) > pad
-      next.hide()
+      next.addClass('hidden-by-fold')
       next = next.next()
-    $(this).removeClass('open-block')
-    $(this).find('.fa').removeClass('fa-minus-square-o')
-    $(this).find('.fa').addClass('fa-plus-square-o')
+    $(this).removeClass('fa-minus-square-o')
+    $(this).addClass('fa-plus-square-o')
   else
     next = line.next()
     while next && parseInt(next.data('pad')) > pad
-      next.show()
+      next.removeClass('hidden-by-fold')
       next = next.next()
-    $(this).addClass('open-block')
-    $(this).find('.fa').removeClass('fa-plus-square-o')
-    $(this).find('.fa').addClass('fa-minus-square-o')
-  return false
+    $(this).removeClass('fa-plus-square-o')
+    $(this).addClass('fa-minus-square-o')
 
 $ sharelogInit
 $(document).on 'page:load', sharelogInit
