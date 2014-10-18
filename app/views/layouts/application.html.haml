@@ -28,7 +28,7 @@
         %a.navbar-brand(href="/") Sharelogs
         .navbar-collapse.collapse.navbar-responsive-collapse
           %ul.nav.navbar-nav
-            %li= link_to "Link 1", "/path1"
+            / %li= link_to "Link 1", "/path1"
 
     .container
       .row
@@ -37,9 +37,12 @@
           = yield
         .col-lg-3
           .well.sidebar-nav
-            %h3 Sidebar
+            %h3 Sharelogs
             %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
+              %li.nav-header ToDo
+              %li= link_to "Pagination", "#"
+              %li= link_to "Find errors", "#"
+              %li= link_to "Find slow queries", "#"
+              %li= link_to "More log formats", "#"
       %footer
         %p &copy; sharelogs 2014
