@@ -1,13 +1,18 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To test the application run:
+
+  curl --upload-file ./log/development.log http://localhost:3000/rails
 
 Things you may want to cover:
 
 * Ruby version
 
+2.0.0
+
 * System dependencies
+
+MongoDB
 
 * Configuration
 

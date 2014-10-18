@@ -16,7 +16,7 @@ class LogFile
     })
   end
 
-  def get_file
+  def raw_log
     grid.get(id).read
   end
 
