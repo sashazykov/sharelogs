@@ -1,7 +1,7 @@
 %p= link_to 'Raw log', log_file_url(@log_file.key, format: :log)
 #console
   %pre
-    %code#code=@log_file.raw_log[-[@log_file.raw_log.length, 100*1024].min..-1]
+    %code#code=@log_file.to_html[-[@log_file.to_html.length, 100*1024].min..-1]
 :javascript
   var txt = document.getElementById("code").innerHTML;
 
@@ -19,5 +19,3 @@
 
   var cdiv = document.getElementById("code");
   cdiv.innerHTML = html_numbered;
-:javascript
-  // hljs.initHighlightingOnLoad();

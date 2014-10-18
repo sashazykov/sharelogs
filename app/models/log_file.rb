@@ -22,7 +22,11 @@ class LogFile
   end
 
   def raw_log
-    grid.get(id).read
+    @raw_log ||= grid.get(id).read
+  end
+
+  def to_html
+    @to_html ||= ERB::Util.html_escape(raw_log)
   end
 
 end
