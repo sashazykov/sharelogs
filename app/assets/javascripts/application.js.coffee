@@ -46,26 +46,26 @@ sharelogInit = () ->
   $('#grepInput').on 'change', grepLogs
   $('#grepInput').on 'keyup', grepLogs
 
-  $(document).on 'click', '.toggle-block-logic', () ->
-    line = $(this).parent().parent()
-    pad = parseInt(line.data('pad'))
-    if $(this).hasClass('open-block')
-      next = line.next()
-      while next && parseInt(next.data('pad')) > pad
-        next.hide()
-        next = next.next()
-      $(this).removeClass('open-block')
-      $(this).find('.fa').removeClass('fa-minus-square-o')
-      $(this).find('.fa').addClass('fa-plus-square-o')
-    else
-      next = line.next()
-      while next && parseInt(next.data('pad')) > pad
-        next.show()
-        next = next.next()
-      $(this).addClass('open-block')
-      $(this).find('.fa').removeClass('fa-plus-square-o')
-      $(this).find('.fa').addClass('fa-minus-square-o')
-    return false
+$(document).on 'click', '.toggle-block-logic', () ->
+  line = $(this).parent().parent()
+  pad = parseInt(line.data('pad'))
+  if $(this).hasClass('open-block')
+    next = line.next()
+    while next && parseInt(next.data('pad')) > pad
+      next.hide()
+      next = next.next()
+    $(this).removeClass('open-block')
+    $(this).find('.fa').removeClass('fa-minus-square-o')
+    $(this).find('.fa').addClass('fa-plus-square-o')
+  else
+    next = line.next()
+    while next && parseInt(next.data('pad')) > pad
+      next.show()
+      next = next.next()
+    $(this).addClass('open-block')
+    $(this).find('.fa').removeClass('fa-plus-square-o')
+    $(this).find('.fa').addClass('fa-minus-square-o')
+  return false
 
 $ sharelogInit
 $(document).on 'page:load', sharelogInit
