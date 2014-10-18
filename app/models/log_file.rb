@@ -1,9 +1,11 @@
 class LogFile
   include MongoMapper::Document
 
+  LOG_TYPES = %w(rails)
+
   key :sha512, String
-  key :log_type, String
-  key :key, String
+  key :log_type, String, :in => LOG_TYPES
+  key :key, String, :required => true
 
   def grid
     @grid ||= Mongo::Grid.new(MongoMapper.database)
