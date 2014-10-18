@@ -4,7 +4,7 @@
 #= require turbolinks
 #= require_tree .
 
-$ () ->
+sharelogInit = () ->
 
   html_lines = ansi_up.ansi_to_html($("#code").text()).split(/\r\n|\r|\n/)
   $("#code").html('<table></table>')
@@ -30,3 +30,6 @@ $ () ->
 
   $('#grepInput').on 'change', grepLogs
   $('#grepInput').on 'keyup', grepLogs
+
+$ sharelogInit
+$(document).on 'page:load', sharelogInit
