@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  put ':log_type' => 'log_file#create'
+
+  get 'log/:key' => 'log_file#show', as: 'log_file'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

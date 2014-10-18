@@ -1,0 +1,21 @@
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+  options:
+    w: 1
+    pool_size: 1
+    slave_ok: false
+    ssl: false
+
+development:
+  <<: *defaults
+  database: sharelogs_development
+
+test:
+  <<: *defaults
+  database: sharelogs_test
+  w: 0
+
+# set these environment variables on your prod server
+production:
+  uri: <%= ENV['MONGOHQ_URL'] %>
