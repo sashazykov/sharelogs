@@ -11,6 +11,7 @@ sharelogInit = () ->
   prev = null
   prev_pad = null
   $(html_lines).each (i) ->
+    i++
     if this.length == 0
       pad = prev_pad
     else if pad = this.match(/^\s+/)
