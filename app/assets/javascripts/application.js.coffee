@@ -10,3 +10,15 @@ $ () ->
   $("#code").html('<table></table>')
   $(html_lines).each (i) ->
     $("#code table").append("<tr id='L#{i}'><td class='line-number'><a href='#L#{i}'>#{i}</a></td><td>#{this}</td></tr>")
+
+  grepLogs = () ->
+    grepString = $('#grepInput').val()
+    $("#code table tr").each (i) ->
+      if $(this).find('td').text().match(new RegExp(grepString, "i"))
+        $(this).show()
+      else
+        $(this).hide()
+
+  $('#grepInput').on 'change', grepLogs
+  $('#grepInput').on 'keypress', grepLogs
+  $('#grepInput').on 'keyup', grepLogs
