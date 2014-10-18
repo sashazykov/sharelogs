@@ -6,7 +6,7 @@
   %code
     $ curl --upload-file ./log/development.log #{root_url}rails
     %br/
-    = link_to log_file_url('YqNDRUI9A4JR4bY'), log_file_url('YqNDRUI9A4JR4bY'), target: :blank
+    = link_to log_file_url('hjO07BhgQCKflpI'), log_file_url('hjO07BhgQCKflpI'), target: :blank
 
 %h2 Share last N lines only
 
@@ -21,7 +21,7 @@
       else
         tail -n $3 $2 > $tmpfile
       fi
-      curl --upload-file $tmpfile http://localhost:3000/$1
+      curl --upload-file $tmpfile #{root_url}$1
       rm -f $tmpfile
       }
       alias sharelog=sharelog
