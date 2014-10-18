@@ -4,4 +4,6 @@
   %div#code_title
     #{@log_file.log_type.camelize} log (#{number_to_human_size @log_file.file.file_length}, uploaded at #{l @log_file.file.upload_date, :format=>:short})
     #{link_to '<i class="fa fa-download"></i> Raw log'.html_safe, log_file_url(@log_file.key, format: :log), :class=>'pull-right btn raw-log'}
+  - if @log_file.raw_log.length > 100*1024
+    .alert.alert-warning#code_warning File too large, only latest 100 KB of #{number_to_human_size @log_file.file.file_length} displayed.
   %div#code=@log_file.raw_log[-[@log_file.raw_log.length, 100*1024].min..-1]
