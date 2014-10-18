@@ -836,8 +836,8 @@
 //
 //##
 
-@code-color:                  #c7254e;
-@code-bg:                     #f9f2f4;
+@code-bg:                      #2b3e50;
+@code-color:                   #ebebeb;
 
 @kbd-color:                   #fff;
 @kbd-bg:                      #333;
@@ -1158,4 +1158,18 @@ label,
   &-title {
     border: none;
   }
+}
+
+.line-number {
+  width:50px;
+  background-color: @well-bg;
+  text-align: right;
+}
+
+#code table {
+  border:1px solid @pre-border-color;
+  padding:20px;
+}
+#code table td {
+  padding:0px 10px 0px 10px;
 }

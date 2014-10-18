@@ -21,8 +21,12 @@ class LogFile
     })
   end
 
+  def file
+    grid.get(id)
+  end
+
   def raw_log
-    @raw_log ||= grid.get(id).read
+    @raw_log ||= file.read
   end
 
   def to_html
