@@ -11,9 +11,12 @@ class LogFile
     @grid ||= Mongo::Grid.new(MongoMapper.database)
   end
 
-  def store_log file
+  def store_log log, sanitized = true
+    if sanitized
+      log = log.gsub(/\/(Users|home)\/[\w\d]+\//, '/home/user/')
+    end
     grid.delete(id)
-    grid.put(file, {
+    grid.put(log, {
       :_id => id
     })
   end
