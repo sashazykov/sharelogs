@@ -1,5 +1,5 @@
 %p
-  %input#grepInput.form-control{type: 'text', placeholder: 'search in logs'}
+  %input#grepInput.form-control{type: 'text', placeholder: 'grep logs (regex supported)'}
 
 %pre
   %div #{@log_file.log_type} log (#{number_to_human_size @log_file.file.file_length}, uploaded at #{l @log_file.file.upload_date, :format=>:short}) #{link_to '<i class="fa fa-download"></i> Raw log'.html_safe, log_file_url(@log_file.key, format: :log)}
