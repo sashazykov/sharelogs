@@ -1,3 +1,23 @@
 %p= link_to 'Raw log', log_file_url(@log_file.key, format: :log)
+#console
+  %pre
+    %code#code=@log_file.raw_log
+:javascript
+  var txt = document.getElementById("code").innerHTML;
 
-%pre= @log_file.raw_log
+  var html = ansi_up.ansi_to_html(txt);
+
+  var html_lines = html.split(/\r\n|\r|\n/);
+
+  var html_numbered = '<table>';
+  var line_n = 0;
+  for (var i=0; i < html_lines.length; i++)
+  {
+    html_numbered += '<tr><td><a href="#'+i+'">'+i+'</a></td><td>'+html_lines[i]+'</td></tr>';
+  }
+  html_numbered += '</table>';
+
+  var cdiv = document.getElementById("code");
+  cdiv.innerHTML = html_numbered;
+:javascript
+  // hljs.initHighlightingOnLoad();

@@ -24,5 +24,7 @@ class LogFileController < ApplicationController
     else
       render text: 'Not Found', status: 404
     end
+    @test = " [1m[35m (21.0ms)[0m  INSERT INTO 'schema_migrations' (version) VALUES ('20130117144252')
+  [1m[36m (14.1ms)[0m  [1mINSERT INTO 'schema_migrations' (version) VALUES ('20121123190612')[0m"
   end
 end
