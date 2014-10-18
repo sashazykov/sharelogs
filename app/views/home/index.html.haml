@@ -1,9 +1,28 @@
 %h1 Share your logs using the command-line
 
-%h2 Example:
+%h2 Simple example:
 
 %p
   $ curl --upload-file ./log/development.log
   = root_url + 'rails'
 %p
   = link_to log_file_url('5y9l_zx9InCfbng'), log_file_url('5y9l_zx9InCfbng'), target: :blank
+
+%h2 Share last N lines only
+
+%pre
+  :plain
+    sharelog() {
+    tmpfile=$( mktemp -t sharelog )
+    if [ -z $3 ]
+    then
+      cat $2 > $tmpfile
+    else
+      tail -n $3 $2 > $tmpfile
+    fi
+    curl --upload-file $tmpfile http://localhost:3000/$1
+    rm -f $tmpfile
+    }
+    alias sharelog=sharelog
+
+%p $ sharelog rails ./log/production.log 200
