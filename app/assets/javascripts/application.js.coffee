@@ -6,13 +6,7 @@
 
 $ () ->
 
-  txt = $("#code").html()
-  html = ansi_up.ansi_to_html(txt)
-  html_lines = html.split(/\r\n|\r|\n/)
-  html_numbered = "<table>"
-  i = 0
-  while i < html_lines.length
-    html_numbered += "<tr id='L#{i}'><td class='line-number'><a href='#L#{i}'>#{i}</a></td><td>#{html_lines[i]}</td></tr>"
-    i++
-  html_numbered += "</table>"
-  cdiv = $("#code").html(html_numbered)
+  html_lines = ansi_up.ansi_to_html($("#code").text()).split(/\r\n|\r|\n/)
+  $("#code").html('<table></table>')
+  $(html_lines).each (i) ->
+    $("#code table").append("<tr id='L#{i}'><td class='line-number'><a href='#L#{i}'>#{i}</a></td><td>#{this}</td></tr>")
