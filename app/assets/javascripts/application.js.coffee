@@ -47,6 +47,12 @@ sharelogInit = () ->
   $('#grepInput').on 'change', grepLogs
   $('#grepInput').on 'keyup', grepLogs
 
+  if selected_line = location.hash.match(/L\d+/)
+    $('#'+selected_line[0]).addClass('highlighted')
+
+
+# end of sharelogInit
+
 $(document).on 'click', '.toggle-block-logic', () ->
   line = $(this).parent().parent()
   pad = parseInt(line.data('pad'))
@@ -64,6 +70,13 @@ $(document).on 'click', '.toggle-block-logic', () ->
       next = next.next()
     $(this).removeClass('fa-plus-square-o')
     $(this).addClass('fa-minus-square-o')
+
+$(document).on 'click', '.line-number', () ->
+  $("#code table tr").removeClass('highlighted')
+  $(this).parent().addClass('highlighted')
+  # location.hash = $(this).parent().attr('id')
+  history.pushState('', document.title, window.location.pathname + '#' + $(this).parent().attr('id'));
+  e.preventDefault()
 
 $ sharelogInit
 $(document).on 'page:load', sharelogInit
