@@ -1,21 +1,19 @@
 = content_for :sidebar do
   %h3 Sharelogs
   %ul.nav.nav-list
-    %li.nav-header ToDo
-    %li= link_to "Find errors", "#"
-    %li= link_to "Find slow queries", "#"
-    %li= link_to "Log expiration", "#"
-    %li= link_to "More log formats", "#"
-    %li.nav-header Done
-    %li= link_to "Line numbers", "#"
+    %li.nav-header You can deploy your own instance of Sharelogs for free:
+    %li= link_to image_tag('https://www.herokucdn.com/deploy/button.png'), 'https://heroku.com/deploy?template=https://github.com/railsrumble/sharelogs', target: :blank
+    %li.nav-header Features
+    %li= link_to "Upload with curl", "#"
+    %li= link_to "View in browser", "#"
     %li= link_to "Links to lines", "#"
-    %li= link_to "ANSI colors", "#"
     %li= link_to "Regex grep", "#"
+    %li= link_to "Time/request filters", "#"
+    %li= link_to "ANSI colors", "#"
     %li= link_to "Block folding", "#"
-    %li= link_to "Line highlighting", "#"
-    %li= link_to "Filter by requests", "#"
 
-%h1 Share logs using the command-line
+%h1
+  Share logs using the command-line
 
 %h2 Upload with curl:
 
@@ -25,7 +23,7 @@
     %br/
     = link_to(log_file_url('ktG1VTkfan_JM6s'), log_file_url('ktG1VTkfan_JM6s'), target: :blank) + " <em>&larr; check this example</em>".html_safe
 
-%h2 Or send last N lines using this simple script:
+%h2 Upload last N lines using this simple script:
 
 %pre
   %code

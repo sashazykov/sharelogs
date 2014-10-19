@@ -7,14 +7,22 @@ To test the application run:
 
     curl --upload-file ./log/development.log http://localhost:3000/rails
 
-Things you may want to cover:
+Features
+--------
 
-Ruby version
-------------
+* Upload with curl
+* View in browser
+* Links to lines
+* Regex grep
+* Time/request filters
+* ANSI colors
+* Block folding
 
-2.0.0
 
-System dependencies
--------------------
+ToDo
+----
 
-MongoDB
+* Find errors
+* Find slow queries
+* Log expiration
+* More log formats
