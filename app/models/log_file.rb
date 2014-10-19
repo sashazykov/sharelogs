@@ -7,6 +7,8 @@ class LogFile
   key :log_type, String, :in => LOG_TYPES
   key :key, String, :required => true
 
+  before_destroy :destroy_log
+
   def grid
     @grid ||= Mongo::Grid.new(MongoMapper.database)
   end
@@ -27,6 +29,12 @@ class LogFile
 
   def raw_log
     @raw_log ||= file.read
+  end
+
+  private
+
+  def destroy_log
+    grid.delete(id)
   end
 
 end
