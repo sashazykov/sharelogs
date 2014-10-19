@@ -8,12 +8,41 @@
 
 sharelogInit = () ->
 
+  filterByCheckbox = (name) ->
+    selected = []
+    selected_checkboxes = $("##{name}s label input:checked")
+    selected_checkboxes.each (i) ->
+      selected.push($(this).data(name))
+
+    $("#code table tr").each (i) ->
+      value = $(this).data(name)
+
+      if (selected.length > 0) && ($.inArray(value, selected) < 0)
+        $(this).addClass("hidden-by-#{name}")
+      else
+        $(this).removeClass("hidden-by-#{name}")
+
+  create_checkbox = (name, value) ->
+    data = {}
+    data[name] = value
+    $("##{name}s").append(
+      $('<label></label>').append(
+        $('<input/>').attr(type: "checkbox", autocomplete: "off").data(data).on(
+          "click", () ->
+            filterByCheckbox(name)
+        )
+      ).append(value)
+    )
+
+
   html_lines = ansi_up.ansi_to_html($("#code").text()).split(/\r\n|\r|\n/)
   $("#code").html('<table></table>')
-  prev = null
-  prev_pad = null
-  datetime = datetime_max = null
-  datetime_min = 2413480333000
+
+  methods = urls = ips = []
+  prev = prev_pad = url = method = ip = datetime = datetime_max = null
+
+  datetime_min = new Date('2100-01-01') #far future
+
   $(html_lines).each (i) ->
     i++
     if this.length == 0
@@ -30,18 +59,33 @@ sharelogInit = () ->
     line = $('<tr></tr>').attr(id: "L#{i}")
 
     # prepare data-attributes
-    pattern = new RegExp(/Started\sGET\s\"(.*)\"\sfor\s(.*)\sat\s(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\s[+-]\d{4})/g)
+    pattern = new RegExp(/Started\s(GET|POST|PUT|DELETE|PATCH)\s\"(.*)\"\sfor\s(.*)\sat\s(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\s[+-]\d{4})/g)
     res = pattern.exec(this)
-    if res && res.length == 4
-      datetime = Date.parse((res[3].substr(0, 19)+res[3].substr(20)).replace(' ', 'T'))
+    if res && res.length == 5
+      datetime = Date.parse((res[4].substr(0, 19)+res[4].substr(20)).replace(' ', 'T'))
       datetime_max = new Date(Math.max(datetime, datetime_max))
       datetime_min = new Date(Math.min(datetime, datetime_min))
-      line = line.data
-        url:      res[1]
-        ip:       res[2]
+      method = res[1]
+      url = res[2]
+      ip = res[3]
+
+      if $.inArray(method,methods) < 0
+        methods.push(method)
+        create_checkbox('method', method)
+
+      if (!url.match('^/assets/')) && ($.inArray(url,urls) < 0)
+        urls.push(url)
+        create_checkbox('url', url)
+
+      if $.inArray(ip,ips) < 0
+        ips.push(ip)
+        create_checkbox('ip', ip)
 
     line.data
       pad: pad
+      method: method
+      url: url
+      ip: ip
       datetime: datetime
 
     line.append "<td class='line-number'><a href='#L#{i}'>#{i}</a></td><td class='log'>#{this}</td>"
@@ -69,6 +113,18 @@ sharelogInit = () ->
 
   $('#grepInput').on 'change', grepLogs
   $('#grepInput').on 'keyup', grepLogs
+
+  filterStatic = () ->
+    is_filter_enabled = $("input#static:checked").length > 0
+    $("#code table tr").each (i) ->
+      url = $(this).data("url")
+      if (is_filter_enabled && url && url.match('^/assets/'))
+        $(this).addClass('hidden-by-datetime')
+      else
+        $(this).removeClass('hidden-by-datetime')
+
+  $("#static").on 'click', filterStatic
+
 
   if selected_line = location.hash.match(/L\d+/)
     $('#'+selected_line[0]).addClass('highlighted')
@@ -133,7 +189,6 @@ sharelogInit = () ->
         $(this).removeClass('hidden-by-datetime')
 
   return
-
 
 # end of sharelogInit
 

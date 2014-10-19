@@ -13,6 +13,19 @@
           %input.datetime.form-control{:type => "text"}/
           %span.input-group-addon
             %span.fa.fa-calendar
+    %li.nav-header    
+      %label
+        %input#static{:type => "checkbox", :autocomplete => "off"}/
+        Hide assets
+    %li.nav-header
+      Methods
+      #methods
+    %li.nav-header
+      IPs
+      #ips
+    %li.nav-header
+      URLs
+      #urls
 %p
   %input#grepInput.form-control{type: 'text', placeholder: 'grep logs (regex supported)'}
 %div
