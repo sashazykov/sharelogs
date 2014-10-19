@@ -1,3 +1,18 @@
+= content_for :sidebar do
+  %h3 Filters
+  %ul.nav.nav-list
+    %li.nav-header
+      Time range
+      .form-group
+        #start_time.input-group.date
+          %input.datetime.form-control{:type => "text"}/
+          %span.input-group-addon
+            %span.fa.fa-calendar
+      .form-group
+        #end_time.input-group.date
+          %input.datetime.form-control{:type => "text"}/
+          %span.input-group-addon
+            %span.fa.fa-calendar
 %p
   %input#grepInput.form-control{type: 'text', placeholder: 'grep logs (regex supported)'}
 %div

@@ -26,6 +26,8 @@ gem 'coffee-rails', '~> 4.0.0'
 gem "therubyracer",  platforms: :ruby
 gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
 gem "twitter-bootstrap-rails"
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

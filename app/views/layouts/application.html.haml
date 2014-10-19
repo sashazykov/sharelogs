@@ -37,21 +37,6 @@
           = yield
         .col-lg-3
           .well.sidebar-nav
-            %h3 Sharelogs
-            %ul.nav.nav-list
-              %li.nav-header ToDo
-              %li= link_to "Pagination", "#"
-              %li= link_to "Filter by time", "#"
-              %li= link_to "Find errors", "#"
-              %li= link_to "Find slow queries", "#"
-              %li= link_to "Log expiration", "#"
-              %li= link_to "More log formats", "#"
-              %li.nav-header Done
-              %li= link_to "Line numbers", "#"
-              %li= link_to "Links to lines", "#"
-              %li= link_to "ASCII colors", "#"
-              %li= link_to "Regex grep", "#"
-              %li= link_to "Block folding", "#"
-              %li= link_to "Line highlighting", "#"
+            = yield :sidebar
       %footer
         %p &copy; sharelogs 2014
