@@ -2,31 +2,30 @@
   %h3 Sharelogs
   %ul.nav.nav-list
     %li.nav-header ToDo
-    %li= link_to "Pagination", "#"
     %li= link_to "Find errors", "#"
     %li= link_to "Find slow queries", "#"
     %li= link_to "Log expiration", "#"
     %li= link_to "More log formats", "#"
     %li.nav-header Done
-    %li= link_to "Filter by time", "#"
     %li= link_to "Line numbers", "#"
     %li= link_to "Links to lines", "#"
-    %li= link_to "ASCII colors", "#"
+    %li= link_to "ANSI colors", "#"
     %li= link_to "Regex grep", "#"
     %li= link_to "Block folding", "#"
     %li= link_to "Line highlighting", "#"
+    %li= link_to "Filter by requests", "#"
 
 %h1 Share logs using the command-line
 
-%h2 Simple example:
+%h2 Upload with curl:
 
 %pre
   %code
     $ curl --upload-file ./log/development.log #{root_url}rails
     %br/
-    = link_to log_file_url('ktG1VTkfan_JM6s'), log_file_url('ktG1VTkfan_JM6s'), target: :blank
+    = link_to(log_file_url('ktG1VTkfan_JM6s'), log_file_url('ktG1VTkfan_JM6s'), target: :blank) + " <em>&larr; check this example</em>".html_safe
 
-%h2 Share last N lines only
+%h2 Or send last N lines using this simple script:
 
 %pre
   %code
@@ -45,3 +44,12 @@
       alias sharelog=sharelog
 %pre
   %code $ sharelog rails ./log/production.log 200
+
+/ Place this before your </body> tag.
+:javascript
+  var rumbleBannerBackgroundColor, rumbleBannerTextColor, rumbleBannerLinkColor, rumbleBannerPlacement;
+  rumbleBannerBackgroundColor = "#4E5D6C";
+  rumbleBannerTextColor = "#EBEBEB";
+  rumbleBannerLinkColor = "#ffffff";
+  rumbleBannerPlacement = "top"; // Optionally replace with "bottom".
+%script{:src => "https://d4nnn7wspfa3h.cloudfront.net/banner-2014.js", :type => "text/javascript"}
