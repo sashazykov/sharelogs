@@ -12,7 +12,7 @@
       "generator": "secret"
     },
     "WEB_CONCURRENCY": {
-      "description": "The number of processes to run.",
+      "description": "The number of unicorn processes to run.",
       "value": "3"
     }
   }
