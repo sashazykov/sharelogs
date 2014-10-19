@@ -157,10 +157,14 @@ $(document).on 'click', '.toggle-block-logic', (e) ->
   return false
 
 $(document).on 'click', '#code table tr', (e) ->
-  $("#code table tr").removeClass('highlighted')
-  $(this).addClass('highlighted')
-  # location.hash = $(this).parent().attr('id')
-  history.pushState('', document.title, window.location.pathname + '#' + $(this).attr('id'));
+  if $(this).hasClass('highlighted')
+     $(this).removeClass('highlighted')
+     history.pushState('', document.title, window.location.pathname);
+  else
+    $("#code table tr").removeClass('highlighted')
+    $(this).addClass('highlighted')
+    # location.hash = $(this).parent().attr('id')
+    history.pushState('', document.title, window.location.pathname + '#' + $(this).attr('id'));
   e.preventDefault()
 
 $ sharelogInit
