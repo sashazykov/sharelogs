@@ -1,0 +1,9 @@
+{
+  "name": "Sharelogs",
+  "description": "Share logs using the command-line",
+  "repository": "https://github.com/railsrumble/sharelogs",
+  "keywords": ["rails", "logs", "share", "curl"],
+  "addons": [
+    "mongohq"
+  ]
+}
