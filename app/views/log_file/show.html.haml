@@ -28,7 +28,7 @@
       URLs
       #urls
 %p
-  %input#grepInput.form-control{type: 'text', placeholder: 'grep logs (regex supported)'}
+  %input#grepInput.form-control{type: 'text', placeholder: 'grep logs (regex supported)', :autocomplete => "off"}
 %div
   %div#code_title
     #{@log_file.log_type.camelize} log (#{number_to_human_size @log_file.file.file_length}, uploaded at #{l @log_file.file.upload_date, :format=>:short})

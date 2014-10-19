@@ -159,9 +159,6 @@ sharelogInit = () ->
   $("#start_time input").val("")
   $("#end_time input").val("")
   
-  console.log(datetime_min)
-  console.log(datetime_max)
-
   $("#start_time").on "dp.change", (e) ->
     $("#end_time").data("DateTimePicker").setMinDate e.date
     filterTime()
@@ -211,6 +208,22 @@ $(document).on 'click', '.toggle-block-logic', (e) ->
       next = next.next()
     $(this).removeClass('fa-plus-square-o')
     $(this).addClass('fa-minus-square-o')
+  return false
+
+
+resetFilters = () ->
+  $('input').not(':button, :submit, :reset, :hidden')
+  .val('')
+  .removeAttr('checked')
+  .removeAttr('selected')
+
+  $('#code table tr').attr(class: '')
+
+$(document).on 'click', '#code table tr a', (e) ->
+  resetFilters()
+  $("#code table tr").removeClass('highlighted')
+  $(this).parent().parent().addClass('highlighted')
+  location.hash = $(this).parent().parent().attr('id')
   return false
 
 $(document).on 'click', '#code table tr', (e) ->
