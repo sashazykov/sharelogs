@@ -26,12 +26,14 @@ sharelogInit = () ->
     data = {}
     data[name] = value
     $("##{name}s").append(
-      $('<label></label>').append(
-        $('<input/>').attr(type: "checkbox", autocomplete: "off").data(data).on(
-          "click", () ->
-            filterByCheckbox(name)
-        )
-      ).append(value)
+      $('<div></div>').addClass('checkbox').append(
+        $('<label></label>').append(
+          $('<input/>').attr(type: "checkbox", autocomplete: "off").data(data).on(
+            "click", () ->
+              filterByCheckbox(name)
+          )
+        ).append(value)
+      )
     )
 
 
