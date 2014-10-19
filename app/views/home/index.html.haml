@@ -32,14 +32,14 @@
   %code
     :plain
       sharelog() {
-      tmpfile=$( mktemp -t sharelog )
+      tmpfile=$( mktemp )
       if [ -z $3 ]
       then
         cat $2 > $tmpfile
       else
         tail -n $3 $2 > $tmpfile
       fi
-      curl --upload-file $tmpfile #{root_url}$1
+      curl --upload-file $tmpfile http://dna.r14.railsrumble.com/$1
       rm -f $tmpfile
       }
       alias sharelog=sharelog
