@@ -53,7 +53,7 @@ sharelogInit = () ->
 
 # end of sharelogInit
 
-$(document).on 'click', '.toggle-block-logic', () ->
+$(document).on 'click', '.toggle-block-logic', (e) ->
   line = $(this).parent().parent()
   pad = parseInt(line.data('pad'))
   if $(this).hasClass('fa-minus-square-o')
@@ -70,12 +70,13 @@ $(document).on 'click', '.toggle-block-logic', () ->
       next = next.next()
     $(this).removeClass('fa-plus-square-o')
     $(this).addClass('fa-minus-square-o')
+  return false
 
-$(document).on 'click', '.line-number', () ->
+$(document).on 'click', '#code table tr', (e) ->
   $("#code table tr").removeClass('highlighted')
-  $(this).parent().addClass('highlighted')
+  $(this).addClass('highlighted')
   # location.hash = $(this).parent().attr('id')
-  history.pushState('', document.title, window.location.pathname + '#' + $(this).parent().attr('id'));
+  history.pushState('', document.title, window.location.pathname + '#' + $(this).attr('id'));
   e.preventDefault()
 
 $ sharelogInit
