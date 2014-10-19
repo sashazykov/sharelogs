@@ -22,9 +22,22 @@ sharelogInit = () ->
     # prev.append(" #{prev_pad} < #{pad}") if prev
     if prev_pad? && prev_pad < pad
       prev.append(" <i class='fa fa-minus-square-o toggle-block-logic'></i>")
-    
+
+    line = $('<tr></tr>').attr(id: "L#{i}").data(pad:pad)
+
+    # prepare data-attributes
+    pattern = new RegExp(/Started\sGET\s\"(.*)\"\sfor\s(.*)\sat\s(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\s[+-]\d{4})/g)
+    res = pattern.exec(this)
+    if res && res.length == 4
+      line = line.data
+        datetime: Date.parse((res[3].substr(0, 19)+res[3].substr(20)).replace(' ', 'T'))
+        url:      res[1]
+        ip:       res[2]
+
+    line.append "<td class='line-number'><a href='#L#{i}'>#{i}</a></td><td class='log'>#{this}</td>"
+
     # add new line
-    prev = $("#code table").append("<tr id='L#{i}' data-pad='#{pad}'><td class='line-number'><a href='#L#{i}'>#{i}</a></td><td class='log'>#{this}</td></tr>").find('tr:last td.log')
+    prev = $("#code table").append(line).find('tr:last td.log')
     prev_pad = pad 
 
   grepPid = 1
