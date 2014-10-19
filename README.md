@@ -10,14 +10,13 @@ To test the application run:
 Features
 --------
 
-* Upload with curl
-* View in browser
+* Command-line uploading
+* Browser log viewer
 * Links to lines
 * Regex grep
 * Time/request filters
 * ANSI colors
 * Block folding
-
 
 ToDo
 ----

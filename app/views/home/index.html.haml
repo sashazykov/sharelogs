@@ -1,11 +1,12 @@
 = content_for :sidebar do
   %h3 Sharelogs
   %ul.nav.nav-list
-    %li.nav-header You can deploy your own instance of Sharelogs for free:
+    %li.nav-header You can deploy your own instance of this application for free:
     %li= link_to image_tag('https://www.herokucdn.com/deploy/button.png'), 'https://heroku.com/deploy?template=https://github.com/railsrumble/sharelogs', target: :blank
-    %li.nav-header Features
-    %li= link_to "Upload with curl", "#"
-    %li= link_to "View in browser", "#"
+  %h3 Features
+  %ul.nav.nav-list
+    %li= link_to "Command-line uploading", "#"
+    %li= link_to "Browser log viewer", "#"
     %li= link_to "Links to lines", "#"
     %li= link_to "Regex grep", "#"
     %li= link_to "Time/request filters", "#"
